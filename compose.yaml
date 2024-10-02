@@ -1,0 +1,59 @@
+name: key-lite-web
+services:
+  lint:
+    extends:
+      service: npm
+    command: run lint
+    volumes:
+      - type: bind
+        source: ./.eslintrc.json
+        target: /code/.eslintrc.json
+  npm:
+    extends:
+      service: npm-tool
+    entrypoint: npm
+    command: ls
+    volumes:
+      - type: bind
+        source: ./package-lock.json
+        target: /code/package-lock.json
+      - type: bind
+        source: ./package.json
+        target: /code/package.json
+  npm-tool:
+    build:
+      context: .
+      target: development
+    volumes:
+      - type: bind
+        source: ./src
+        target: /code/src
+    profiles:
+      - tools
+  npx:
+    extends:
+      service: npm-tool
+    command: --help
+    entrypoint: npx
+    volumes:
+      - type: bind
+        source: ./package-lock.json
+        target: /code/package-lock.json
+      - type: bind
+        source: ./package.json
+        target: /code/package.json
+  web:
+    build:
+      context: .
+      target: development
+    ports:
+      - target: ${KEY_LITE_WEB_PORT:-3001}
+        published: ${KEY_LITE_WEB_PORT:-3001}
+    restart: unless-stopped
+    environment:
+      KEY_LITE_WEB_PORT: ${KEY_LITE_WEB_PORT:-3001}
+      VITE_KEY_LITE_API_URL: http://localhost:4001/graphql
+    volumes:
+      - type: bind
+        source: ./src
+        target: /code/src

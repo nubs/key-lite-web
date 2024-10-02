@@ -1,0 +1,5 @@
+/.next/
+/build/
+/node_modules/
+/out/
+/compose.override.yaml

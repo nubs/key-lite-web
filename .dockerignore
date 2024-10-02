@@ -1,0 +1,11 @@
+/.git/
+/.next/
+/build/
+/node_modules/
+/out/
+/.dockerignore
+/.gitignore
+/Dockerfile
+/compose.override.yaml
+/compose.override.yaml.example
+/compose.yaml

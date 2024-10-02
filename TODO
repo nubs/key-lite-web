@@ -1,0 +1,7 @@
+AB testing with contentful - use for ideas. https://www.contentful.com/developers/docs/tutorials/general/optimizely-tutorial/
+formik/yup https://edwardsmoses.com/form-validation-with-react-router-v6
+react-helmet
+vite preview (testing production build)
+offline persisted mutations https://tanstack.com/query/v4/docs/react/examples/react/offline
+batching graphql queries https://github.com/TanStack/query/discussions/365
+eslint

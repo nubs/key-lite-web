@@ -1,0 +1,8 @@
+query getCmsMediaById(
+  $cmsMediaId: Slug!
+) {
+  getCmsMediaById(cmsMediaId: $cmsMediaId) {
+    cmsMediaUrl
+    id
+  }
+}

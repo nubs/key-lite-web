@@ -1,0 +1,51 @@
+query getServiceBySlugName(
+  $serviceSlugName: Slug!
+  $cmsBlocksAfter: Cursor
+  $cmsBlocksCount: Count!
+  $cmsBlocksSortBy: CmsBlockSort!
+  $cmsBlocksSortDirection: SortDirection!
+  $cmsMediaAfter: Cursor
+  $cmsMediaCount: Count!
+  $cmsMediaSortBy: CmsMediaSort!
+  $cmsMediaSortDirection: SortDirection!
+) {
+  getServiceBySlugName(slugName: $serviceSlugName) {
+    serviceConfiguration {
+      cmsPage {
+        cmsBlocks(
+          after: $cmsBlocksAfter
+          count: $cmsBlocksCount
+          sortBy: $cmsBlocksSortBy
+          sortDirection: $cmsBlocksSortDirection
+        ) {
+          edges {
+            node {
+              cmsBlockFieldValues
+              cmsBlockIndex
+              cmsBlockIsRoot
+              cmsBlockTemplateKey
+              id
+            }
+          }
+        }
+        cmsMedia(
+          after: $cmsMediaAfter
+          count: $cmsMediaCount
+          sortBy: $cmsMediaSortBy
+          sortDirection: $cmsMediaSortDirection
+        ) {
+          edges {
+            node {
+              cmsMediaUrl
+              id
+            }
+          }
+        }
+      }
+      serviceConfigurationDescriptionMarkdown
+      serviceConfigurationTagline
+      serviceConfigurationTitleName
+    }
+    serviceName
+  }
+}
